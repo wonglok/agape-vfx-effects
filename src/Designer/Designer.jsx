@@ -13,7 +13,7 @@ export const Designer = () => {
   return (
     <>
       <div className='flex h-full w-full'>
-        <div className='bg-purple-300' style={{ height: `100%`, width: `280px` }}>
+        <div className='overflow-scroll bg-purple-300' style={{ height: `100%`, width: `280px` }}>
           <Models></Models>
           {/* <div className='bg-gray-200 p-2 text-center'>Material Previews</div> */}
         </div>
@@ -26,7 +26,7 @@ export const Designer = () => {
           </div>
         </div>
         <div className='bg-purple-300' style={{ height: `100%`, width: `280px` }}>
-          <div className='h-full w-full'>
+          <div className='h-full w-full overflow-scroll'>
             <Parts></Parts>
           </div>
         </div>
