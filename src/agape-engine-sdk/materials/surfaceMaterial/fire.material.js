@@ -144,7 +144,7 @@ vec3 bumpMap(vec2 uv) {
     return vec3(xy + .5, 1.);
 }
 vec4 getFireColor() {
-    vec2 uv = myUV;
+    vec2 uv = vec2(myUV.x,1.0 -  myUV.y);
     vec3 normal = bumpMap(uv * vec2(1.0, 0.3) + distortionMovement * timeScale);
     vec2 displacement = clamp((normal.xy - .5) * distortionStrength, -1., 1.);
     uv += displacement;
