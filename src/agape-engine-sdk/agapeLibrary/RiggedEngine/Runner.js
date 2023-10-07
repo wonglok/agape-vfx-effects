@@ -22,10 +22,10 @@ export class Runner extends Object3D {
   constructor({ gl, skinnedMesh }) {
     super()
 
-    let geoCount = skinnedMesh.geometry.attributes.position.count / 2
+    let geoCount = skinnedMesh.geometry.attributes.position.count * 0.8
     this.gl = gl
-    this.ww = geoCount / 10
-    this.hh = 10
+    this.ww = Math.floor(Math.pow(geoCount, 0.5))
+    this.hh = Math.floor(Math.pow(geoCount, 0.5))
 
     this.skinnedMesh = skinnedMesh
 
