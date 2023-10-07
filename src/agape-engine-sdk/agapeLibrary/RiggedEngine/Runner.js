@@ -22,13 +22,14 @@ export class Runner extends Object3D {
   constructor({ gl, skinnedMesh }) {
     super()
 
+    let geoCount = skinnedMesh.geometry.attributes.position.count / 2
     this.gl = gl
-    this.ww = 256
-    this.hh = 256
+    this.ww = geoCount / 10
+    this.hh = 10
 
     this.skinnedMesh = skinnedMesh
 
-    this.skinData = getSkinData({ ww: this.ww, hh: this.hh, skinnedMesh: skinnedMesh })
+    this.skinData = getSkinData({ randomSampling: true, ww: this.ww, hh: this.hh, skinnedMesh: skinnedMesh })
 
     //
     this.tasks = []
@@ -231,13 +232,14 @@ class Display extends Object3D {
         #ifdef USE_ALPHAHASH
           vPosition = vec3( tPosData.rgb );
         #endif
+        
       `,
       )
 
       shader.vertexShader = shader.vertexShader.replace(
         `}`,
         `
-          gl_PointSize = 2.0;
+          gl_PointSize = 10.0;
         }`,
       )
 
@@ -276,15 +278,17 @@ class Display extends Object3D {
           float t = o_move.a + o_pos.a + rand(vMyUV.xy);
           // vec3 myColor = 1.0 * pal(time + o_pos.a + o_move.a + abs(o_move.x * 0.005 * -cos(3.0 * time)), vec3(0.5,0.5,0.5),vec3(0.5,0.5,0.5),vec3(1.0,0.0,0.5),vec3(0.8,0.90,0.30));
           vec3 myColor = cosPalette(t,vec3(0.21,0.55,0.63),vec3(0.2,0.5,0.33),vec3(0.2,0.18,0.75),vec3(0.06,0.16,0.65));
-          
+
           if (rand(vMyUV.xy) <= 0.015) {
             myColor += 35.0 * (myColor);
           }
 
-          gl_FragColor.a = 1.0;
+          gl_FragColor.a = 1.0 * (0.5 - length(gl_PointCoord.xy - 0.5));
           gl_FragColor.rgb = myColor;
 
-          
+          if (length(gl_PointCoord.xy - 0.5) > 0.5) {
+            discard;
+          }
         `,
       )
     }
