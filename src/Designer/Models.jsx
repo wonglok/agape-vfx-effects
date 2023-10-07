@@ -28,7 +28,7 @@ export function Models() {
                     .getState()
                     .addModel({ name: file.name, id: md5(data + file.name), data: data, patches: [] })
                 }
-                reader.readAsArrayBuffer(file)
+                reader.readAsDataURL(file)
               }
             }
           }

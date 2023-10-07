@@ -237,7 +237,7 @@ class Display extends Object3D {
       shader.vertexShader = shader.vertexShader.replace(
         `}`,
         `
-          gl_PointSize = 1.0;
+          gl_PointSize = 2.0;
         }`,
       )
 
@@ -268,20 +268,20 @@ class Display extends Object3D {
 
           vec4 o_move = texture2D( u_move, vMyUV.xy );
           vec4 o_pos = texture2D( u_pos, vMyUV.xy );
-          
+
           vec3 velocity = vec3(o_pos.rgb - o_move.rgb) / -25.0;
           vec3 xyz = normalize(velocity);
           float force = (length(xyz.xy) + length(xyz.yz) + length(xyz.zx)) / 3.0;
 
-          float t = o_move.a + o_pos.a + time * 0.5 + rand(vMyUV.xy);
+          float t = o_move.a + o_pos.a + rand(vMyUV.xy);
           // vec3 myColor = 1.0 * pal(time + o_pos.a + o_move.a + abs(o_move.x * 0.005 * -cos(3.0 * time)), vec3(0.5,0.5,0.5),vec3(0.5,0.5,0.5),vec3(1.0,0.0,0.5),vec3(0.8,0.90,0.30));
           vec3 myColor = cosPalette(t,vec3(0.21,0.55,0.63),vec3(0.2,0.5,0.33),vec3(0.2,0.18,0.75),vec3(0.06,0.16,0.65));
-        
+          
           if (rand(vMyUV.xy) <= 0.015) {
             myColor += 35.0 * (myColor);
           }
 
-          gl_FragColor.a = 0.5;
+          gl_FragColor.a = 1.0;
           gl_FragColor.rgb = myColor;
 
           

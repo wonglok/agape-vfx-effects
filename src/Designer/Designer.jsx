@@ -4,8 +4,12 @@ import { useEffect } from 'react'
 import { Models } from './Models.jsx'
 import { ActiveModel } from './ActiveModel.jsx'
 import { Parts } from './Parts.jsx'
-
+import { agapeVFX } from '@/agape-engine-sdk/sdk.js'
 export const Designer = () => {
+  useEffect(() => {
+    window.agapeVFX = agapeVFX
+  }, [])
+
   useEffect(() => {
     useDesigner.getState().hydrate()
   }, [])
