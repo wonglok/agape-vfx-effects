@@ -13,7 +13,7 @@ export function ActiveModel() {
       {
         <>
           <Environment files={`/hdr/greenwich_park_02_1k.hdr`}></Environment>
-          <OrbitControls target={[0, 1.7, 0]} object-position={[0, 1.7, 2]}></OrbitControls>
+          <OrbitControls target={[0, 1, 0]} object-position={[0, 1.7, 2]}></OrbitControls>
           <ModelLoader></ModelLoader>
           <directionalLight position={[1, 1, 0]} intensity={1}></directionalLight>
         </>
