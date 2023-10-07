@@ -25,6 +25,7 @@
     "localforage": "^1.10.0",
     "md5": "^2.3.0",
     "next": "^13.4.13",
+    "nice-color-palettes": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.154.0",

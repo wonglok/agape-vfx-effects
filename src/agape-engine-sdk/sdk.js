@@ -1,7 +1,7 @@
 import md5 from 'md5'
 import { basename } from 'path'
 
-let materials = []
+let agapeVFX = []
 function importAll(r) {
   r.keys().forEach((key) => {
     let loadedItem = r(key)
@@ -12,15 +12,15 @@ function importAll(r) {
       name: basename(key),
       typeName: loadedItem.typeName,
       displayName: loadedItem.displayName,
-      all: loadedItem,
+      api: loadedItem,
     }
-    if (materials.some((r) => r.id === item.id)) {
+    if (agapeVFX.some((r) => r.id === item.id)) {
     } else {
-      materials.push(item)
+      agapeVFX.push(item)
     }
   })
 }
 
-importAll(require.context('./materials/', true, /\.material\.js$/))
+importAll(require.context('./agapeVFX/', true, /\.agape\.js$/))
 
-export { materials }
+export { agapeVFX }

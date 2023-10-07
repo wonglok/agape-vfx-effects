@@ -1,4 +1,4 @@
-import { materials } from '@/agape-engine-sdk/sdk'
+import { agapeVFX } from '@/agape-engine-sdk/sdk'
 import { useDesigner } from './useDesigner'
 
 export function Parts() {
@@ -36,7 +36,7 @@ function OnePart({ item }) {
           >
             <option value='default'>Default Material</option>
 
-            {materials.map((r) => {
+            {agapeVFX.map((r) => {
               return (
                 <option key={r.id} value={r.id}>
                   {r.displayName}
