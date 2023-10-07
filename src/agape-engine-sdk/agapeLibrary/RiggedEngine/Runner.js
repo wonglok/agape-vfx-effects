@@ -6,7 +6,7 @@ export class Runner extends Object3D {
   constructor({ gl, skinnedMesh }) {
     super()
 
-    let geoCount = skinnedMesh.geometry.attributes.position.count
+    let geoCount = skinnedMesh.geometry.attributes.position.count * 0.9
     this.gl = gl
     this.ww = Math.floor(Math.pow(geoCount, 0.5))
     this.hh = Math.floor(Math.pow(geoCount, 0.5))
@@ -261,7 +261,7 @@ class Display extends Object3D {
 
           float t = o_move.a + o_pos.a + rand(vMyUV.xy);
           // vec3 myColor = 1.0 * pal(time + o_pos.a + o_move.a + abs(o_move.x * 0.005 * -cos(3.0 * time)), vec3(0.5,0.5,0.5),vec3(0.5,0.5,0.5),vec3(1.0,0.0,0.5),vec3(0.8,0.90,0.30));
-          vec3 myColor = cosPalette(t,vec3(0.63, 0.55, 0.21),vec3(0.5,0.2,0.33),vec3(0.18,0.75,0.6),vec3(0.65, 0.06,0.16));
+          vec3 myColor = cosPalette(t,vec3(0.63, 0.55, 0.210),vec3(0.5,0.2,0.33),vec3(0.18,0.5,0.6),vec3(0.65, 0.06,0.16));
 
           if (rand(vMyUV.xy) <= 0.015) {
             myColor += 35.0 * (myColor);
