@@ -1,20 +1,4 @@
-import {
-  AdditiveBlending,
-  AnimationMixer,
-  BufferGeometry,
-  Clock,
-  Color,
-  DoubleSide,
-  InstancedBufferAttribute,
-  InstancedBufferGeometry,
-  MeshBasicMaterial,
-  MeshPhysicalMaterial,
-  MeshStandardMaterial,
-  Object3D,
-  Points,
-  ShaderMaterial,
-  Vector2,
-} from 'three'
+import { AdditiveBlending, BufferGeometry, Clock, Color, MeshBasicMaterial, Object3D, Points, Vector2 } from 'three'
 import { getSkinData } from './Rigged'
 import { GPUComputationRenderer } from 'three-stdlib'
 
