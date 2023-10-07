@@ -6,7 +6,7 @@ export class Runner extends Object3D {
   constructor({ gl, skinnedMesh }) {
     super()
 
-    let geoCount = skinnedMesh.geometry.attributes.position.count * 0.9
+    let geoCount = skinnedMesh.geometry.attributes.position.count * 1.5
     this.gl = gl
     this.ww = Math.floor(Math.pow(geoCount, 0.5))
     this.hh = Math.floor(Math.pow(geoCount, 0.5))
@@ -223,7 +223,7 @@ class Display extends Object3D {
       shader.vertexShader = shader.vertexShader.replace(
         `}`,
         `
-          gl_PointSize = 25.0;
+          gl_PointSize = 30.0;
         }`,
       )
 
@@ -238,9 +238,11 @@ class Display extends Object3D {
         uniform sampler2D u_move;
         uniform sampler2D u_pos;
         varying vec2 vMyUV;
+
         vec3 pal( in float t, in vec3 a, in vec3 b, in vec3 c, in vec3 d ) {
           return a + b*cos( 6.28318*(c*t+d) );
         }
+
         vec3 cosPalette(  float t,  vec3 a,  vec3 b,  vec3 c, vec3 d ){
             return a + b*cos( 6.28318*(c*t+d) );
         }
@@ -261,14 +263,14 @@ class Display extends Object3D {
 
           float t = o_move.a + o_pos.a + rand(vMyUV.xy);
           // vec3 myColor = 1.0 * pal(time + o_pos.a + o_move.a + abs(o_move.x * 0.005 * -cos(3.0 * time)), vec3(0.5,0.5,0.5),vec3(0.5,0.5,0.5),vec3(1.0,0.0,0.5),vec3(0.8,0.90,0.30));
-          vec3 myColor = cosPalette(t,vec3(0.63, 0.55, 0.210),vec3(0.5,0.2,0.33),vec3(0.18,0.5,0.6),vec3(0.65, 0.06,0.16));
+          vec3 myColor = cosPalette(t,vec3(0.9, 0.55, 0.210),vec3(0.5,0.2,0.33),vec3(0.18,0.5,0.6),vec3(0.65, 0.06,0.16));
 
           if (rand(vMyUV.xy) <= 0.015) {
             myColor += 35.0 * (myColor);
           }
 
           gl_FragColor.a = 1.0 * (0.5 - length(gl_PointCoord.xy - 0.5));
-          gl_FragColor.a = pow(gl_FragColor.a, 2.5);
+          gl_FragColor.a = pow(gl_FragColor.a, 2.5) * 1.5;
           gl_FragColor.rgb = myColor;
 
           if (length(gl_PointCoord.xy - 0.5) > 0.5) {
@@ -285,6 +287,6 @@ class Display extends Object3D {
     this.pts.quaternion.copy(this.parent.skinnedMesh.quaternion)
     this.pts.scale.copy(this.parent.skinnedMesh.scale)
     this.pts.position.copy(this.parent.skinnedMesh.position)
-    this.pts.rotation.x = Math.PI * 0.5
+    this.pts.rotation.x += Math.PI * 0.5
   }
 }

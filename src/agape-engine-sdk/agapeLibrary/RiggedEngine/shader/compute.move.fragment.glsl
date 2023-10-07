@@ -119,6 +119,8 @@ void main (void) {
 
   velocity.y += 0.001;
 
+  // o_move.rgb = ballify(o_move.rgb, 1.0);
+
   gl_FragColor = vec4(o_move.rgb + velocity, o_move.a);  
   
   if (o_pos.a >= 1.0 || force <= 0.3333) {
