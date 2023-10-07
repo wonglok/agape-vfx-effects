@@ -186,6 +186,8 @@ class Display extends Object3D {
     let shader = new MeshBasicMaterial({
       color: getColor(),
       transparent: true,
+      depthWrite: false,
+      blending: AdditiveBlending,
     })
     shader.onBeforeCompile = (shader) => {
       shader.uniforms.dt = { value: 0 }
@@ -278,8 +280,11 @@ class Display extends Object3D {
           if (rand(vMyUV.xy) <= 0.015) {
             myColor += 35.0 * (myColor);
           }
-          gl_FragColor.rgb = myColor * 1.3;
-          gl_FragColor.a = 1.0;
+
+          gl_FragColor.a = 0.5;
+          gl_FragColor.rgb = myColor;
+
+          
         `,
       )
     }
