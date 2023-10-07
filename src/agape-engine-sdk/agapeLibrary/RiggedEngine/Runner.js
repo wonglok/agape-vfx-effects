@@ -6,7 +6,7 @@ export class Runner extends Object3D {
   constructor({ gl, skinnedMesh }) {
     super()
 
-    let geoCount = skinnedMesh.geometry.attributes.position.count * 0.8
+    let geoCount = skinnedMesh.geometry.attributes.position.count
     this.gl = gl
     this.ww = Math.floor(Math.pow(geoCount, 0.5))
     this.hh = Math.floor(Math.pow(geoCount, 0.5))
@@ -223,7 +223,7 @@ class Display extends Object3D {
       shader.vertexShader = shader.vertexShader.replace(
         `}`,
         `
-          gl_PointSize = 10.0;
+          gl_PointSize = 25.0;
         }`,
       )
 
@@ -268,6 +268,7 @@ class Display extends Object3D {
           }
 
           gl_FragColor.a = 1.0 * (0.5 - length(gl_PointCoord.xy - 0.5));
+          gl_FragColor.a = pow(gl_FragColor.a, 2.5);
           gl_FragColor.rgb = myColor;
 
           if (length(gl_PointCoord.xy - 0.5) > 0.5) {
